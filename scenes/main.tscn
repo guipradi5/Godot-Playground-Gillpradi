@@ -1,0 +1,323 @@
+[gd_scene load_steps=66 format=3 uid="uid://t3fvk4qfxk63"]
+
+[ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/textures/grids/Dark/texture_05.png" id="1_e70pu"]
+[ext_resource type="Texture2D" uid="uid://6o3hwigx2swq" path="res://assets/textures/grids/Orange/texture_06.png" id="2_ilf4m"]
+[ext_resource type="Texture2D" uid="uid://djg8y25y06h5n" path="res://assets/textures/grids/Green/texture_09.png" id="3_cl837"]
+[ext_resource type="Texture2D" uid="uid://bm8djub5otix2" path="res://assets/textures/grids/Purple/texture_02.png" id="4_yhq4d"]
+[ext_resource type="PackedScene" uid="uid://dfik3n1nq08hg" path="res://scenes/player.tscn" id="5_bmvrt"]
+[ext_resource type="Script" path="res://scripts/horizontal_movement.gd" id="6_30m37"]
+[ext_resource type="PackedScene" uid="uid://d2erxp4so24jc" path="res://assets/models/Fantasy Low Poly Pack/Aspen_Tree_01.fbx" id="8_tosr1"]
+[ext_resource type="PackedScene" uid="uid://b8luu00o2vxbw" path="res://assets/models/Fantasy Low Poly Pack/barrel_opened.fbx" id="9_js84e"]
+[ext_resource type="PackedScene" uid="uid://cpqkl2hprkfaw" path="res://assets/models/Fantasy Low Poly Pack/chair.fbx" id="10_6vc86"]
+[ext_resource type="PackedScene" uid="uid://hdd6bt0eb4qu" path="res://assets/models/Fantasy Low Poly Pack/crate_01.fbx" id="11_hffd4"]
+[ext_resource type="PackedScene" uid="uid://cxr7bl5w5y6eg" path="res://assets/models/Fantasy Low Poly Pack/crate_02.fbx" id="12_fbyu2"]
+[ext_resource type="PackedScene" uid="uid://depem1uovqygw" path="res://assets/models/Fantasy Low Poly Pack/crate_04.fbx" id="13_pjdwx"]
+[ext_resource type="PackedScene" uid="uid://kapcrgbq5ctj" path="res://assets/models/Fantasy Low Poly Pack/crate_03.fbx" id="14_av6jr"]
+[ext_resource type="PackedScene" uid="uid://y1jonn4dwwy0" path="res://assets/models/Fantasy Low Poly Pack/door.fbx" id="15_ivc5w"]
+[ext_resource type="PackedScene" uid="uid://bf6d1jyumn02a" path="res://assets/models/Fantasy Low Poly Pack/fish_shop.fbx" id="16_0xsk8"]
+[ext_resource type="PackedScene" uid="uid://b56n1mtwjehyf" path="res://assets/models/Fantasy Low Poly Pack/floor.fbx" id="17_nd0o8"]
+[ext_resource type="PackedScene" uid="uid://tdkqt6ymaabr" path="res://assets/models/Fantasy Low Poly Pack/flowers_bed_01.fbx" id="18_uwb7m"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="19_8571p"]
+[ext_resource type="PackedScene" uid="uid://bn3pmffgk5r7g" path="res://assets/models/Fantasy Low Poly Pack/flowers_bed_02.fbx" id="19_iffvq"]
+[ext_resource type="Script" path="res://scripts/NPCDialogue.gd" id="19_qxxvi"]
+[ext_resource type="PackedScene" uid="uid://bicb3md2jnmos" path="res://assets/models/Fantasy Low Poly Pack/flowers_bed_03.fbx" id="20_h4bsq"]
+[ext_resource type="PackedScene" uid="uid://bkss8jybgtmgq" path="res://assets/models/Fantasy Low Poly Pack/grave.fbx" id="21_ekcwp"]
+[ext_resource type="PackedScene" uid="uid://csa2a44fjhhp4" path="res://assets/models/Fantasy Low Poly Pack/house_01.fbx" id="22_e5g8d"]
+[ext_resource type="PackedScene" uid="uid://d0t6cau1fyu53" path="res://assets/models/Fantasy Low Poly Pack/house_02.fbx" id="23_luwio"]
+[ext_resource type="PackedScene" uid="uid://buppuingpand2" path="res://assets/models/Fantasy Low Poly Pack/house_03.fbx" id="24_efl7f"]
+[ext_resource type="PackedScene" uid="uid://c17frhkq7v84r" path="res://assets/models/Fantasy Low Poly Pack/Pine_Tree_01.fbx" id="25_1ihj7"]
+[ext_resource type="PackedScene" uid="uid://y6mlqgswrpsv" path="res://assets/models/Fantasy Low Poly Pack/Pine_Tree_02.fbx" id="26_lhqrt"]
+[ext_resource type="PackedScene" uid="uid://b37jbfqh66qb3" path="res://assets/models/Fantasy Low Poly Pack/Pine_Tree_03.fbx" id="27_3mu30"]
+[ext_resource type="PackedScene" uid="uid://cbug0cvvtuajq" path="res://assets/models/Fantasy Low Poly Pack/Pine_Tree_04.fbx" id="28_kiiq5"]
+[ext_resource type="PackedScene" uid="uid://cma7vuls2ecao" path="res://assets/models/Fantasy Low Poly Pack/Pine_Tree_05.fbx" id="29_p2mum"]
+[ext_resource type="PackedScene" uid="uid://b7ui6pi8n1evo" path="res://assets/models/Fantasy Low Poly Pack/skull.fbx" id="30_86l3w"]
+[ext_resource type="PackedScene" uid="uid://tte3cibxjdrp" path="res://assets/models/Fantasy Low Poly Pack/straw_pile_01.fbx" id="31_k7gc7"]
+[ext_resource type="PackedScene" uid="uid://mmxc052mk85t" path="res://assets/models/Fantasy Low Poly Pack/straw_pile_02.fbx" id="32_a4676"]
+[ext_resource type="PackedScene" uid="uid://iw3g4u6up1vl" path="res://assets/models/Fantasy Low Poly Pack/straw_pile_03.fbx" id="33_ca5ke"]
+[ext_resource type="PackedScene" uid="uid://drj0af4abkdnk" path="res://assets/models/Fantasy Low Poly Pack/table_02.fbx" id="34_2qpe1"]
+[ext_resource type="PackedScene" uid="uid://bh5rq8mkmrwjw" path="res://assets/models/Fantasy Low Poly Pack/Terrain_03.fbx" id="35_6w2c8"]
+[ext_resource type="PackedScene" uid="uid://d5uhtwgqp40s" path="res://assets/models/Fantasy Low Poly Pack/Terrain_04.fbx" id="36_764yq"]
+[ext_resource type="PackedScene" uid="uid://dshoib4kqy0lg" path="res://assets/models/Fantasy Low Poly Pack/Terrain_05.fbx" id="37_0vyuc"]
+[ext_resource type="PackedScene" uid="uid://c5qal2x8bff07" path="res://assets/models/Fantasy Low Poly Pack/Terrain_06.fbx" id="38_a455d"]
+[ext_resource type="PackedScene" uid="uid://0y28nskumdw2" path="res://assets/models/Fantasy Low Poly Pack/Terrain_07.fbx" id="39_6xghp"]
+[ext_resource type="PackedScene" uid="uid://bo07vn1gcjumy" path="res://assets/models/Fantasy Low Poly Pack/Terrain_08.fbx" id="40_pc238"]
+[ext_resource type="PackedScene" uid="uid://c6tglb4rieb0y" path="res://assets/models/Fantasy Low Poly Pack/Terrain_09.fbx" id="41_0t4e8"]
+[ext_resource type="PackedScene" uid="uid://dic2t8ugxd6aq" path="res://assets/models/Fantasy Low Poly Pack/Terrain_10.fbx" id="42_rob2h"]
+[ext_resource type="PackedScene" uid="uid://rorbk3tn3ndv" path="res://assets/models/Fantasy Low Poly Pack/Terrain_11.fbx" id="43_nwcm4"]
+[ext_resource type="PackedScene" uid="uid://brgpmxuf3mvab" path="res://assets/models/Fantasy Low Poly Pack/Tree_01.fbx" id="44_xav8g"]
+[ext_resource type="PackedScene" uid="uid://cegxo3ilv1a6q" path="res://assets/models/Fantasy Low Poly Pack/Tree_02.fbx" id="45_yb2jh"]
+[ext_resource type="PackedScene" uid="uid://cnq8nwif4tgor" path="res://assets/models/Fantasy Low Poly Pack/Tree_03.fbx" id="46_05eq1"]
+[ext_resource type="PackedScene" uid="uid://dsbxfjhgh5qq0" path="res://assets/models/Fantasy Low Poly Pack/Tree_04.fbx" id="47_fi1ku"]
+[ext_resource type="PackedScene" uid="uid://be5odx0q11o56" path="res://assets/models/Fantasy Low Poly Pack/Tree_05.fbx" id="48_n1l2m"]
+[ext_resource type="PackedScene" uid="uid://doa0gx5s4f2yv" path="res://assets/models/Fantasy Low Poly Pack/Trunk_02.fbx" id="49_s7bi2"]
+[ext_resource type="PackedScene" uid="uid://c6ch36o2nuilb" path="res://assets/models/Fantasy Low Poly Pack/Trunk_01.fbx" id="50_0rfb8"]
+[ext_resource type="PackedScene" uid="uid://dd4knby56h3my" path="res://assets/models/Fantasy Low Poly Pack/Trunk_03.fbx" id="51_lv74q"]
+[ext_resource type="PackedScene" uid="uid://dooc38qs5stex" path="res://assets/models/Fantasy Low Poly Pack/wall.fbx" id="52_m4a8n"]
+[ext_resource type="PackedScene" uid="uid://cil4ir0c38qlv" path="res://assets/models/Fantasy Low Poly Pack/well.fbx" id="53_uabkg"]
+[ext_resource type="PackedScene" uid="uid://bf472ceoqul4p" path="res://assets/models/Fantasy Low Poly Pack/wheatfield.fbx" id="54_3gl05"]
+[ext_resource type="PackedScene" uid="uid://bcesevur25aim" path="res://scenes/ui/ui.tscn" id="55_27y4k"]
+[ext_resource type="PackedScene" uid="uid://6h44oaibaea7" path="res://assets/models/Fantasy Low Poly Pack/wooden_pointer.fbx" id="55_cfpn0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qnbnj"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_k2y6i"]
+sky_material = SubResource("ProceduralSkyMaterial_qnbnj")
+
+[sub_resource type="Environment" id="Environment_ttwxe"]
+background_mode = 2
+sky = SubResource("Sky_k2y6i")
+tonemap_mode = 2
+sdfgi_enabled = true
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.698039, 0.72549, 0.772549, 1)
+fog_density = 0.002
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sbsoa"]
+albedo_texture = ExtResource("1_e70pu")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_irqey"]
+albedo_texture = ExtResource("2_ilf4m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aytqc"]
+albedo_texture = ExtResource("3_cl837")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1345j"]
+albedo_texture = ExtResource("4_yhq4d")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ogitx"]
+radius = 0.75599
+
+[node name="world" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ttwxe")
+
+[node name="map" type="Node3D" parent="."]
+
+[node name="floor" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_sbsoa")
+use_collision = true
+size = Vector3(1000, 1, 1000)
+
+[node name="box" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -4, 0.5, 1)
+material_override = SubResource("StandardMaterial3D_irqey")
+use_collision = true
+
+[node name="box2" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -1.041, 0.75, -3.521)
+material_override = SubResource("StandardMaterial3D_aytqc")
+use_collision = true
+size = Vector3(1.5, 1.5, 1.5)
+
+[node name="box3" type="CSGBox3D" parent="map"]
+transform = Transform3D(1.92289, 0, -0.55, 0, 2, 0, 0.55, 0, 1.92289, 3, 1, 3)
+material_override = SubResource("StandardMaterial3D_1345j")
+use_collision = true
+
+[node name="Aspen_Tree_01" parent="map" instance=ExtResource("8_tosr1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.40336, 0, -0.735134)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="map/Aspen_Tree_01"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15617, 0)
+transparency = 1.0
+use_collision = true
+radius = 0.190291
+height = 6.43346
+smooth_faces = false
+
+[node name="barrel_opened" parent="map" instance=ExtResource("9_js84e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0139, 0, -0.608464)
+
+[node name="chair" parent="map" instance=ExtResource("10_6vc86")]
+transform = Transform3D(0.635688, 0, -0.771946, 0, 1, 0, 0.771946, 0, 0.635688, 10.5376, -2.38419e-07, -2.90363)
+
+[node name="crate_01" parent="map" instance=ExtResource("11_hffd4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6208, -2.38419e-07, -7.49272)
+
+[node name="crate_02" parent="map" instance=ExtResource("12_fbyu2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.196, -2.38419e-07, -6.69508)
+
+[node name="crate_04" parent="map" instance=ExtResource("13_pjdwx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3244, 0, -7.67177)
+
+[node name="crate_03" parent="map" instance=ExtResource("14_av6jr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2821, -2.38419e-07, -8.4253)
+
+[node name="door" parent="map" instance=ExtResource("15_ivc5w")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.2684, -4.26326e-13, 4.76624)
+
+[node name="fish_shop" parent="map" instance=ExtResource("16_0xsk8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0515, 0, -1.78096)
+
+[node name="floor2" parent="map" instance=ExtResource("17_nd0o8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0779, -2.38419e-07, -17.4342)
+
+[node name="flowers_bed_01" parent="map" instance=ExtResource("18_uwb7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0507, -2.38419e-07, -4.88507)
+
+[node name="flowers_bed_02" parent="map" instance=ExtResource("19_iffvq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9794, 0, -5.03112)
+
+[node name="flowers_bed_03" parent="map" instance=ExtResource("20_h4bsq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8539, -2.38419e-07, -4.99641)
+
+[node name="grave" parent="map" instance=ExtResource("21_ekcwp")]
+transform = Transform3D(-0.0203144, 0, -0.999794, 0, 1, 0, 0.999794, 0, -0.0203144, 10.3241, -4.76837e-07, 1.76795)
+script = ExtResource("19_qxxvi")
+npcName = "Grave"
+dialogues = ["Here lies your dreams and hopes"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="map/grave"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.759629, 0)
+transparency = 1.0
+cast_shadow = 0
+use_collision = true
+size = Vector3(1, 1.52295, 0.340536)
+
+[node name="Interactable3D" type="Area3D" parent="map/grave"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0266714, 1.12701, 1.05661)
+script = ExtResource("19_8571p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/grave/Interactable3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.105424, 0)
+shape = SubResource("CylinderShape3D_ogitx")
+
+[node name="house_01" parent="map" instance=ExtResource("22_e5g8d")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.2467, 1.74276, 7.06693)
+
+[node name="house_02" parent="map" instance=ExtResource("23_luwio")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2369, 4.76837e-07, -21.1892)
+
+[node name="house_03" parent="map" instance=ExtResource("24_efl7f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1909, -4.76837e-07, -20.2558)
+
+[node name="Pine_Tree_01" parent="map" instance=ExtResource("25_1ihj7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.4032, 0, 19.6674)
+
+[node name="Pine_Tree_02" parent="map" instance=ExtResource("26_lhqrt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.3069, 0, 19.4932)
+
+[node name="Pine_Tree_03" parent="map" instance=ExtResource("27_3mu30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.1152, -1.90735e-06, 15.9836)
+
+[node name="Pine_Tree_04" parent="map" instance=ExtResource("28_kiiq5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0081, -1.90735e-06, 11.8983)
+
+[node name="Pine_Tree_05" parent="map" instance=ExtResource("29_p2mum")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8503, -1.90735e-06, 10.7339)
+
+[node name="skull" parent="map" instance=ExtResource("30_86l3w")]
+transform = Transform3D(0.784333, -0.340364, 0.518628, 0, 0.836037, 0.548673, -0.62034, -0.430342, 0.655731, -0.165824, 1.56802, -3.69979)
+
+[node name="straw_pile_01" parent="map" instance=ExtResource("31_k7gc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.22795, 0, -18.1815)
+
+[node name="straw_pile_02" parent="map" instance=ExtResource("32_a4676")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.20414, 0, -17.314)
+
+[node name="straw_pile_03" parent="map" instance=ExtResource("33_ca5ke")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.42978, 0, -2.55125)
+
+[node name="table_02" parent="map" instance=ExtResource("34_2qpe1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.46707, -4.76837e-07, -15.7519)
+
+[node name="Terrain_03" parent="map" instance=ExtResource("35_6w2c8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.34198, 0.00823557, -148.635)
+
+[node name="Terrain_04" parent="map" instance=ExtResource("36_764yq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -182.038, 0.0561343, -148.831)
+
+[node name="Terrain_12" parent="map" instance=ExtResource("36_764yq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -182.038, 0.0561343, -35.8313)
+
+[node name="Terrain_13" parent="map" instance=ExtResource("36_764yq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -182.038, 0.0561343, 74.1687)
+
+[node name="Terrain_14" parent="map" instance=ExtResource("36_764yq")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -130.038, 0.0561343, 187.169)
+
+[node name="Terrain_05" parent="map" instance=ExtResource("37_0vyuc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.5773, 10.0255, -248.235)
+
+[node name="Terrain_06" parent="map" instance=ExtResource("38_a455d")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 125.275, 0, -112.694)
+
+[node name="Terrain_07" parent="map" instance=ExtResource("39_6xghp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.267, 0.112926, 30.9632)
+
+[node name="Terrain_08" parent="map" instance=ExtResource("40_pc238")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140.657, 0.0146587, 197.05)
+
+[node name="Terrain_09" parent="map" instance=ExtResource("41_0t4e8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.4454, 0.138248, 203.892)
+
+[node name="Terrain_10" parent="map" instance=ExtResource("42_rob2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.3093, 0.00288418, -283.163)
+
+[node name="Terrain_11" parent="map" instance=ExtResource("43_nwcm4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.9984, 0.58183, -354.899)
+
+[node name="Tree_01" parent="map" instance=ExtResource("44_xav8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.8478, -1.90735e-06, -15.8744)
+
+[node name="Tree_02" parent="map" instance=ExtResource("45_yb2jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5617, 0, -12.7739)
+
+[node name="Tree_03" parent="map" instance=ExtResource("46_05eq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.151, -9.53674e-07, -16.5795)
+
+[node name="Tree_04" parent="map" instance=ExtResource("47_fi1ku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4218, 0, 23.5915)
+
+[node name="Tree_05" parent="map" instance=ExtResource("48_n1l2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1906, -9.53674e-07, -19.8409)
+
+[node name="Trunk_02" parent="map" instance=ExtResource("49_s7bi2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.4786, -9.53674e-07, -4.13875)
+
+[node name="Trunk_01" parent="map" instance=ExtResource("50_0rfb8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2231, -2.86102e-06, -12.0698)
+
+[node name="Trunk_03" parent="map" instance=ExtResource("51_lv74q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.4473, 0, -7.86342)
+
+[node name="wall" parent="map" instance=ExtResource("52_m4a8n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5654, -4.76837e-07, -22.5254)
+
+[node name="well" parent="map" instance=ExtResource("53_uabkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8179, -4.76837e-07, -0.698794)
+
+[node name="wheatfield" parent="map" instance=ExtResource("54_3gl05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2144, 0, 1.85144)
+
+[node name="wooden_pointer" parent="map" instance=ExtResource("55_cfpn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2821, -4.76837e-07, 3.15536)
+
+[node name="player" parent="." instance=ExtResource("5_bmvrt")]
+sens_horizontal = 0.25
+sens_vertical = 0.25
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.663652, 0.748041, 0, -0.748041, 0.663652, 0, 6.05846, 3.77511)
+script = ExtResource("6_30m37")
+SPEED = 0.1
+focus = true
+focusOffset = Vector3(0, 6, 4)
+
+[node name="UI" parent="." instance=ExtResource("55_27y4k")]
+
+[connection signal="saySomething" from="map/grave" to="UI" method="_updateTextWindow"]
+[connection signal="body_entered" from="map/grave/Interactable3D" to="map/grave/Interactable3D" method="_on_enterBody"]
+[connection signal="body_exited" from="map/grave/Interactable3D" to="map/grave/Interactable3D" method="_on_exitBody"]
+[connection signal="interacted" from="map/grave/Interactable3D" to="map/grave" method="_sayDialogue"]
+[connection signal="dialogueWindowOpened" from="UI" to="player" method="lockCharacter"]

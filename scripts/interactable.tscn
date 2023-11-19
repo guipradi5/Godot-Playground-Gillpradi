@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://5t73j8flwksv"]
+
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="1_d5y2t"]
+
+[node name="Interactable" type="Node2D"]
+scale = Vector2(0.194611, 0.194611)
+script = ExtResource("1_d5y2t")
