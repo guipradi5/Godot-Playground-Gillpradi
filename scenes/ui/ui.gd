@@ -11,6 +11,7 @@ signal dialogueWindowOpened(state)
 @onready var pauseMenu = %PauseMenu
 
 var closeTextWindowOnNextInteraction = true
+#TODO This should be in the interaction component
 @export var timeForNextInteraction = 0.25
 @export var timerForNextInteraction = 0.25
 
@@ -38,10 +39,6 @@ func _process(delta):
 	if timerForNextInteraction > 0:
 		timerForNextInteraction -= delta
 	
-	if Input.is_action_just_pressed("interact"):
-		if timerForNextInteraction <= 0 && textWindow.is_visible_in_tree() && closeTextWindowOnNextInteraction:
-			hideTextWindow()
-		
 	if Input.is_action_just_pressed("pause"):
 		if pauseMenu.is_visible_in_tree():
 			pauseMenu.hide()
@@ -85,9 +82,9 @@ func _updateDialogueLabel():
 func _updateTextWindow(newName, newDialogue):
 	dialogueName = newName
 	dialogue = newDialogue
-	showTextWindow()
-	#TODO: REMOVE: MAKE IT WORK
-	closeTextWindowOnNextInteraction = true
+	if not textWindow.is_visible_in_tree():
+		showTextWindow()
+
 
 func _exitGame():
 	get_tree().quit()

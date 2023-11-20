@@ -468,7 +468,7 @@ scale = Vector2(0.468137, 0.468137)
 texture = ExtResource("11_vjjop")
 script = ExtResource("12_nwbb8")
 npcName = "Gill"
-dialogues = ["Hey! I'm Gill! Welcome to the playgorund!"]
+dialogues = Array[String](["Hey! I'm Gill! Welcome to the playgorund!"])
 
 [node name="StaticBody2D" type="StaticBody2D" parent="PixelMeMother4"]
 

@@ -6,6 +6,8 @@ extends CharacterBody3D
 @onready var camera = $camera_mount/Camera3D
 @onready var animation_player = $visuals/mixamo_base/AnimationPlayer
 
+enum cameraPerspectives {FIRST_PERSON, THIRD_PERSON}
+@export var cameraPerspective: cameraPerspectives
 @export var SPEED = 5.0
 @export var CAN_RUN = true
 @export var RUN_SPEED = 5.0
@@ -21,13 +23,17 @@ extends CharacterBody3D
 
 @export var cameraRotationTop = 90
 @export var cameraRotationBottom = -90
+@onready var thirdPersonCameraPos = camera.transform.origin
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
+	if cameraPerspective == cameraPerspectives.FIRST_PERSON:
+		camera.transform.origin = Vector3(0,0,0)
+		visuals.hide()
+
 func _input(event):
 	if event is InputEventMouseMotion && !LOCK_CAMERA:
 		rotate_y(deg_to_rad(-event.relative.x*sens_horizontal))
@@ -49,39 +55,61 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+	
+	if not LOCK_CHARACTER:
+		# Handle Jump.
+		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
 
-	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("left", "right", "forward", "backwards")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var input_dir = Input.get_vector("left", "right", "forward", "backwards")
+		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+				
+			visuals.look_at(position + direction)
 			
-		visuals.look_at(position + direction)
-		
-		#Speed
-		var usedVel = SPEED
-		if CAN_RUN && Input.is_action_pressed("run"):
-			usedVel = RUN_SPEED
-			if animation_player.current_animation != "running":
-				animation_player.play("running")
-		else: if CAN_DASH && Input.is_action_just_pressed("dash"):
-			usedVel = DASH_SPEED
+			#Speed
+			var usedVel = SPEED
+			if CAN_RUN && Input.is_action_pressed("run"):
+				usedVel = RUN_SPEED
+				if animation_player.current_animation != "running":
+					animation_player.play("running")
+			else: if CAN_DASH && Input.is_action_just_pressed("dash"):
+				usedVel = DASH_SPEED
+			else:
+				if animation_player.current_animation != "walking":
+					animation_player.play("walking")
+			velocity.x = direction.x * usedVel
+			velocity.z = direction.z * usedVel
 		else:
-			if animation_player.current_animation != "walking":
-				animation_player.play("walking")
-		velocity.x = direction.x * usedVel
-		velocity.z = direction.z * usedVel
+			if animation_player.current_animation != "idle":
+				animation_player.play("idle")
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 	else:
-		if animation_player.current_animation != "idle":
-			animation_player.play("idle")
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		animation_player.play("idle")
+		velocity.x = 0
+		velocity.z = 0
 	
 	move_and_slide()
 
 func lockCharacter(state):
 	LOCK_CHARACTER = state
+
+func _changeToFirstPerson():
+	cameraPerspective = cameraPerspectives.FIRST_PERSON
+	camera.transform.origin = Vector3(0,0,0)
+	visuals.hide()
+
+func _changeToThirdPerson():
+	cameraPerspective = cameraPerspectives.THIRD_PERSON
+	camera.transform.origin = thirdPersonCameraPos
+	visuals.show()
+
+func _toggleCameraPerspective():
+	match cameraPerspective:
+		cameraPerspectives.FIRST_PERSON:
+			_changeToThirdPerson()
+		cameraPerspectives.THIRD_PERSON:
+			_changeToFirstPerson()

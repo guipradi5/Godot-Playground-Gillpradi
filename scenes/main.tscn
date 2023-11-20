@@ -1,13 +1,14 @@
-[gd_scene load_steps=66 format=3 uid="uid://t3fvk4qfxk63"]
+[gd_scene load_steps=65 format=3 uid="uid://t3fvk4qfxk63"]
 
 [ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/textures/grids/Dark/texture_05.png" id="1_e70pu"]
 [ext_resource type="Texture2D" uid="uid://6o3hwigx2swq" path="res://assets/textures/grids/Orange/texture_06.png" id="2_ilf4m"]
 [ext_resource type="Texture2D" uid="uid://djg8y25y06h5n" path="res://assets/textures/grids/Green/texture_09.png" id="3_cl837"]
 [ext_resource type="Texture2D" uid="uid://bm8djub5otix2" path="res://assets/textures/grids/Purple/texture_02.png" id="4_yhq4d"]
 [ext_resource type="PackedScene" uid="uid://dfik3n1nq08hg" path="res://scenes/player.tscn" id="5_bmvrt"]
-[ext_resource type="Script" path="res://scripts/horizontal_movement.gd" id="6_30m37"]
+[ext_resource type="PackedScene" uid="uid://b3nnthgppqk8g" path="res://scripts/interactable3D.tscn" id="8_f1ale"]
 [ext_resource type="PackedScene" uid="uid://d2erxp4so24jc" path="res://assets/models/Fantasy Low Poly Pack/Aspen_Tree_01.fbx" id="8_tosr1"]
 [ext_resource type="PackedScene" uid="uid://b8luu00o2vxbw" path="res://assets/models/Fantasy Low Poly Pack/barrel_opened.fbx" id="9_js84e"]
+[ext_resource type="PackedScene" uid="uid://dbhd6qf8khnw7" path="res://assets/models/Stations/Station.tscn" id="9_vi8wu"]
 [ext_resource type="PackedScene" uid="uid://cpqkl2hprkfaw" path="res://assets/models/Fantasy Low Poly Pack/chair.fbx" id="10_6vc86"]
 [ext_resource type="PackedScene" uid="uid://hdd6bt0eb4qu" path="res://assets/models/Fantasy Low Poly Pack/crate_01.fbx" id="11_hffd4"]
 [ext_resource type="PackedScene" uid="uid://cxr7bl5w5y6eg" path="res://assets/models/Fantasy Low Poly Pack/crate_02.fbx" id="12_fbyu2"]
@@ -17,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://bf6d1jyumn02a" path="res://assets/models/Fantasy Low Poly Pack/fish_shop.fbx" id="16_0xsk8"]
 [ext_resource type="PackedScene" uid="uid://b56n1mtwjehyf" path="res://assets/models/Fantasy Low Poly Pack/floor.fbx" id="17_nd0o8"]
 [ext_resource type="PackedScene" uid="uid://tdkqt6ymaabr" path="res://assets/models/Fantasy Low Poly Pack/flowers_bed_01.fbx" id="18_uwb7m"]
-[ext_resource type="Script" path="res://scripts/interactable.gd" id="19_8571p"]
 [ext_resource type="PackedScene" uid="uid://bn3pmffgk5r7g" path="res://assets/models/Fantasy Low Poly Pack/flowers_bed_02.fbx" id="19_iffvq"]
 [ext_resource type="Script" path="res://scripts/NPCDialogue.gd" id="19_qxxvi"]
 [ext_resource type="PackedScene" uid="uid://bicb3md2jnmos" path="res://assets/models/Fantasy Low Poly Pack/flowers_bed_03.fbx" id="20_h4bsq"]
@@ -70,6 +70,11 @@ background_mode = 2
 sky = SubResource("Sky_k2y6i")
 tonemap_mode = 2
 sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 0.17
+sdfgi_cascades = 2
+sdfgi_min_cell_size = 0.1
+sdfgi_y_scale = 2
 glow_enabled = true
 fog_enabled = true
 fog_light_color = Color(0.698039, 0.72549, 0.772549, 1)
@@ -88,14 +93,12 @@ albedo_texture = ExtResource("3_cl837")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1345j"]
 albedo_texture = ExtResource("4_yhq4d")
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ogitx"]
-radius = 0.75599
-
 [node name="world" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
+directional_shadow_blend_splits = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ttwxe")
@@ -135,47 +138,11 @@ radius = 0.190291
 height = 6.43346
 smooth_faces = false
 
-[node name="barrel_opened" parent="map" instance=ExtResource("9_js84e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0139, 0, -0.608464)
-
-[node name="chair" parent="map" instance=ExtResource("10_6vc86")]
-transform = Transform3D(0.635688, 0, -0.771946, 0, 1, 0, 0.771946, 0, 0.635688, 10.5376, -2.38419e-07, -2.90363)
-
-[node name="crate_01" parent="map" instance=ExtResource("11_hffd4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6208, -2.38419e-07, -7.49272)
-
-[node name="crate_02" parent="map" instance=ExtResource("12_fbyu2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.196, -2.38419e-07, -6.69508)
-
-[node name="crate_04" parent="map" instance=ExtResource("13_pjdwx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3244, 0, -7.67177)
-
-[node name="crate_03" parent="map" instance=ExtResource("14_av6jr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2821, -2.38419e-07, -8.4253)
-
-[node name="door" parent="map" instance=ExtResource("15_ivc5w")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.2684, -4.26326e-13, 4.76624)
-
-[node name="fish_shop" parent="map" instance=ExtResource("16_0xsk8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0515, 0, -1.78096)
-
-[node name="floor2" parent="map" instance=ExtResource("17_nd0o8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0779, -2.38419e-07, -17.4342)
-
-[node name="flowers_bed_01" parent="map" instance=ExtResource("18_uwb7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0507, -2.38419e-07, -4.88507)
-
-[node name="flowers_bed_02" parent="map" instance=ExtResource("19_iffvq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9794, 0, -5.03112)
-
-[node name="flowers_bed_03" parent="map" instance=ExtResource("20_h4bsq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8539, -2.38419e-07, -4.99641)
-
 [node name="grave" parent="map" instance=ExtResource("21_ekcwp")]
-transform = Transform3D(-0.0203144, 0, -0.999794, 0, 1, 0, 0.999794, 0, -0.0203144, 10.3241, -4.76837e-07, 1.76795)
+transform = Transform3D(0.85569, 0, -0.51749, 0, 1, 0, 0.51749, 0, 0.85569, 8.3241, -4.76837e-07, -4.23205)
 script = ExtResource("19_qxxvi")
 npcName = "Grave"
-dialogues = ["Here lies your dreams and hopes"]
+dialogues = Array[String](["Here lies your dreams and hopes"])
 
 [node name="CSGBox3D" type="CSGBox3D" parent="map/grave"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.759629, 0)
@@ -184,140 +151,208 @@ cast_shadow = 0
 use_collision = true
 size = Vector3(1, 1.52295, 0.340536)
 
-[node name="Interactable3D" type="Area3D" parent="map/grave"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0266714, 1.12701, 1.05661)
-script = ExtResource("19_8571p")
+[node name="Interactable3D" parent="map/grave" instance=ExtResource("8_f1ale")]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0.0179534, 1.127, 0.883585)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="map/grave/Interactable3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.105424, 0)
-shape = SubResource("CylinderShape3D_ogitx")
+[node name="Station" parent="map" instance=ExtResource("9_vi8wu")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.99084, 0, -5.4559)
+script = ExtResource("19_qxxvi")
+npcName = "Console"
+dialogues = Array[String](["This console is currently in the wrong universe. Why is this console in a medieval setting? What the hell?"])
 
-[node name="house_01" parent="map" instance=ExtResource("22_e5g8d")]
+[node name="CSGBox3D" type="CSGBox3D" parent="map/Station"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.772446, 0)
+transparency = 1.0
+cast_shadow = 0
+lod_bias = 0.001
+size = Vector3(1, 1.98326, 1)
+
+[node name="Interactable3D" parent="map/Station" instance=ExtResource("8_f1ale")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.127, -1.03747)
+
+[node name="Station2" parent="map" instance=ExtResource("9_vi8wu")]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 5.87131, 0, -5.44831)
+script = ExtResource("19_qxxvi")
+npcName = "Station"
+dialogues = Array[String](["Camera Perspective Changer!", "Changing camera perspective..."])
+doSomethingAfterDialogue = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="map/Station2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.772446, 0)
+transparency = 1.0
+cast_shadow = 0
+lod_bias = 0.001
+size = Vector3(1, 1.98326, 1)
+
+[node name="Interactable3D" parent="map/Station2" instance=ExtResource("8_f1ale")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.127, -1.03747)
+
+[node name="Other" type="Node3D" parent="map"]
+
+[node name="house_01" parent="map/Other" instance=ExtResource("22_e5g8d")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.2467, 1.74276, 7.06693)
 
-[node name="house_02" parent="map" instance=ExtResource("23_luwio")]
+[node name="house_02" parent="map/Other" instance=ExtResource("23_luwio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2369, 4.76837e-07, -21.1892)
 
-[node name="house_03" parent="map" instance=ExtResource("24_efl7f")]
+[node name="house_03" parent="map/Other" instance=ExtResource("24_efl7f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1909, -4.76837e-07, -20.2558)
 
-[node name="Pine_Tree_01" parent="map" instance=ExtResource("25_1ihj7")]
+[node name="Pine_Tree_01" parent="map/Other" instance=ExtResource("25_1ihj7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.4032, 0, 19.6674)
 
-[node name="Pine_Tree_02" parent="map" instance=ExtResource("26_lhqrt")]
+[node name="Pine_Tree_02" parent="map/Other" instance=ExtResource("26_lhqrt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.3069, 0, 19.4932)
 
-[node name="Pine_Tree_03" parent="map" instance=ExtResource("27_3mu30")]
+[node name="Pine_Tree_03" parent="map/Other" instance=ExtResource("27_3mu30")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.1152, -1.90735e-06, 15.9836)
 
-[node name="Pine_Tree_04" parent="map" instance=ExtResource("28_kiiq5")]
+[node name="Pine_Tree_04" parent="map/Other" instance=ExtResource("28_kiiq5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0081, -1.90735e-06, 11.8983)
 
-[node name="Pine_Tree_05" parent="map" instance=ExtResource("29_p2mum")]
+[node name="Pine_Tree_05" parent="map/Other" instance=ExtResource("29_p2mum")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8503, -1.90735e-06, 10.7339)
 
-[node name="skull" parent="map" instance=ExtResource("30_86l3w")]
+[node name="skull" parent="map/Other" instance=ExtResource("30_86l3w")]
 transform = Transform3D(0.784333, -0.340364, 0.518628, 0, 0.836037, 0.548673, -0.62034, -0.430342, 0.655731, -0.165824, 1.56802, -3.69979)
 
-[node name="straw_pile_01" parent="map" instance=ExtResource("31_k7gc7")]
+[node name="straw_pile_01" parent="map/Other" instance=ExtResource("31_k7gc7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.22795, 0, -18.1815)
 
-[node name="straw_pile_02" parent="map" instance=ExtResource("32_a4676")]
+[node name="straw_pile_02" parent="map/Other" instance=ExtResource("32_a4676")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.20414, 0, -17.314)
 
-[node name="straw_pile_03" parent="map" instance=ExtResource("33_ca5ke")]
+[node name="straw_pile_03" parent="map/Other" instance=ExtResource("33_ca5ke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.42978, 0, -2.55125)
 
-[node name="table_02" parent="map" instance=ExtResource("34_2qpe1")]
+[node name="table_02" parent="map/Other" instance=ExtResource("34_2qpe1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.46707, -4.76837e-07, -15.7519)
 
-[node name="Terrain_03" parent="map" instance=ExtResource("35_6w2c8")]
+[node name="Terrain_03" parent="map/Other" instance=ExtResource("35_6w2c8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.34198, 0.00823557, -148.635)
 
-[node name="Terrain_04" parent="map" instance=ExtResource("36_764yq")]
+[node name="Terrain_04" parent="map/Other" instance=ExtResource("36_764yq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -182.038, 0.0561343, -148.831)
 
-[node name="Terrain_12" parent="map" instance=ExtResource("36_764yq")]
+[node name="Terrain_12" parent="map/Other" instance=ExtResource("36_764yq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -182.038, 0.0561343, -35.8313)
 
-[node name="Terrain_13" parent="map" instance=ExtResource("36_764yq")]
+[node name="Terrain_13" parent="map/Other" instance=ExtResource("36_764yq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -182.038, 0.0561343, 74.1687)
 
-[node name="Terrain_14" parent="map" instance=ExtResource("36_764yq")]
+[node name="Terrain_14" parent="map/Other" instance=ExtResource("36_764yq")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -130.038, 0.0561343, 187.169)
 
-[node name="Terrain_05" parent="map" instance=ExtResource("37_0vyuc")]
+[node name="Terrain_05" parent="map/Other" instance=ExtResource("37_0vyuc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.5773, 10.0255, -248.235)
 
-[node name="Terrain_06" parent="map" instance=ExtResource("38_a455d")]
+[node name="Terrain_06" parent="map/Other" instance=ExtResource("38_a455d")]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 125.275, 0, -112.694)
 
-[node name="Terrain_07" parent="map" instance=ExtResource("39_6xghp")]
+[node name="Terrain_07" parent="map/Other" instance=ExtResource("39_6xghp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.267, 0.112926, 30.9632)
 
-[node name="Terrain_08" parent="map" instance=ExtResource("40_pc238")]
+[node name="Terrain_08" parent="map/Other" instance=ExtResource("40_pc238")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140.657, 0.0146587, 197.05)
 
-[node name="Terrain_09" parent="map" instance=ExtResource("41_0t4e8")]
+[node name="Terrain_09" parent="map/Other" instance=ExtResource("41_0t4e8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.4454, 0.138248, 203.892)
 
-[node name="Terrain_10" parent="map" instance=ExtResource("42_rob2h")]
+[node name="Terrain_10" parent="map/Other" instance=ExtResource("42_rob2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.3093, 0.00288418, -283.163)
 
-[node name="Terrain_11" parent="map" instance=ExtResource("43_nwcm4")]
+[node name="Terrain_11" parent="map/Other" instance=ExtResource("43_nwcm4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.9984, 0.58183, -354.899)
 
-[node name="Tree_01" parent="map" instance=ExtResource("44_xav8g")]
+[node name="Tree_01" parent="map/Other" instance=ExtResource("44_xav8g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.8478, -1.90735e-06, -15.8744)
 
-[node name="Tree_02" parent="map" instance=ExtResource("45_yb2jh")]
+[node name="Tree_02" parent="map/Other" instance=ExtResource("45_yb2jh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5617, 0, -12.7739)
 
-[node name="Tree_03" parent="map" instance=ExtResource("46_05eq1")]
+[node name="Tree_03" parent="map/Other" instance=ExtResource("46_05eq1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.151, -9.53674e-07, -16.5795)
 
-[node name="Tree_04" parent="map" instance=ExtResource("47_fi1ku")]
+[node name="Tree_04" parent="map/Other" instance=ExtResource("47_fi1ku")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4218, 0, 23.5915)
 
-[node name="Tree_05" parent="map" instance=ExtResource("48_n1l2m")]
+[node name="Tree_05" parent="map/Other" instance=ExtResource("48_n1l2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1906, -9.53674e-07, -19.8409)
 
-[node name="Trunk_02" parent="map" instance=ExtResource("49_s7bi2")]
+[node name="Trunk_02" parent="map/Other" instance=ExtResource("49_s7bi2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.4786, -9.53674e-07, -4.13875)
 
-[node name="Trunk_01" parent="map" instance=ExtResource("50_0rfb8")]
+[node name="Trunk_01" parent="map/Other" instance=ExtResource("50_0rfb8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2231, -2.86102e-06, -12.0698)
 
-[node name="Trunk_03" parent="map" instance=ExtResource("51_lv74q")]
+[node name="Trunk_03" parent="map/Other" instance=ExtResource("51_lv74q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.4473, 0, -7.86342)
 
-[node name="wall" parent="map" instance=ExtResource("52_m4a8n")]
+[node name="wall" parent="map/Other" instance=ExtResource("52_m4a8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5654, -4.76837e-07, -22.5254)
 
-[node name="well" parent="map" instance=ExtResource("53_uabkg")]
+[node name="well" parent="map/Other" instance=ExtResource("53_uabkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8179, -4.76837e-07, -0.698794)
 
-[node name="wheatfield" parent="map" instance=ExtResource("54_3gl05")]
+[node name="wheatfield" parent="map/Other" instance=ExtResource("54_3gl05")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2144, 0, 1.85144)
 
-[node name="wooden_pointer" parent="map" instance=ExtResource("55_cfpn0")]
+[node name="wooden_pointer" parent="map/Other" instance=ExtResource("55_cfpn0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2821, -4.76837e-07, 3.15536)
 
+[node name="barrel_opened" parent="map/Other" instance=ExtResource("9_js84e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0139, 0, -0.608464)
+
+[node name="chair" parent="map/Other" instance=ExtResource("10_6vc86")]
+transform = Transform3D(0.635688, 0, -0.771946, 0, 1, 0, 0.771946, 0, 0.635688, 10.5376, -2.38419e-07, -2.90363)
+
+[node name="crate_01" parent="map/Other" instance=ExtResource("11_hffd4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6208, -2.38419e-07, -7.49272)
+
+[node name="crate_02" parent="map/Other" instance=ExtResource("12_fbyu2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.196, -2.38419e-07, -6.69508)
+
+[node name="crate_04" parent="map/Other" instance=ExtResource("13_pjdwx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3244, 0, -7.67177)
+
+[node name="crate_03" parent="map/Other" instance=ExtResource("14_av6jr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2821, -2.38419e-07, -8.4253)
+
+[node name="door" parent="map/Other" instance=ExtResource("15_ivc5w")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.2684, -4.26326e-13, 4.76624)
+
+[node name="fish_shop" parent="map/Other" instance=ExtResource("16_0xsk8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0515, 0, -1.78096)
+
+[node name="floor2" parent="map/Other" instance=ExtResource("17_nd0o8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0779, -2.38419e-07, -17.4342)
+
+[node name="flowers_bed_01" parent="map/Other" instance=ExtResource("18_uwb7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0507, -2.38419e-07, -4.88507)
+
+[node name="flowers_bed_02" parent="map/Other" instance=ExtResource("19_iffvq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9794, 0, -5.03112)
+
+[node name="flowers_bed_03" parent="map/Other" instance=ExtResource("20_h4bsq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8539, -2.38419e-07, -4.99641)
+
 [node name="player" parent="." instance=ExtResource("5_bmvrt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000123194, 0)
+cameraPerspective = 0
 sens_horizontal = 0.25
 sens_vertical = 0.25
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.663652, 0.748041, 0, -0.748041, 0.663652, 0, 6.05846, 3.77511)
-script = ExtResource("6_30m37")
-SPEED = 0.1
-focus = true
-focusOffset = Vector3(0, 6, 4)
-
 [node name="UI" parent="." instance=ExtResource("55_27y4k")]
+unique_name_in_owner = true
 
+[connection signal="dialogueEnded" from="map/grave" to="UI" method="hideTextWindow"]
 [connection signal="saySomething" from="map/grave" to="UI" method="_updateTextWindow"]
-[connection signal="body_entered" from="map/grave/Interactable3D" to="map/grave/Interactable3D" method="_on_enterBody"]
-[connection signal="body_exited" from="map/grave/Interactable3D" to="map/grave/Interactable3D" method="_on_exitBody"]
 [connection signal="interacted" from="map/grave/Interactable3D" to="map/grave" method="_sayDialogue"]
+[connection signal="dialogueEnded" from="map/Station" to="UI" method="hideTextWindow"]
+[connection signal="saySomething" from="map/Station" to="UI" method="_updateTextWindow"]
+[connection signal="interacted" from="map/Station/Interactable3D" to="map/Station" method="_sayDialogue"]
+[connection signal="dialogueEnded" from="map/Station2" to="UI" method="hideTextWindow"]
+[connection signal="doSomething" from="map/Station2" to="player" method="_toggleCameraPerspective"]
+[connection signal="saySomething" from="map/Station2" to="UI" method="_updateTextWindow"]
+[connection signal="interacted" from="map/Station2/Interactable3D" to="map/Station2" method="_sayDialogue"]
 [connection signal="dialogueWindowOpened" from="UI" to="player" method="lockCharacter"]
