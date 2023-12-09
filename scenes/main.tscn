@@ -1,5 +1,6 @@
-[gd_scene load_steps=65 format=3 uid="uid://t3fvk4qfxk63"]
+[gd_scene load_steps=63 format=3 uid="uid://t3fvk4qfxk63"]
 
+[ext_resource type="Environment" uid="uid://dcyfrmn8ajle0" path="res://scenes/world environments/night.tres" id="1_8beje"]
 [ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/textures/grids/Dark/texture_05.png" id="1_e70pu"]
 [ext_resource type="Texture2D" uid="uid://6o3hwigx2swq" path="res://assets/textures/grids/Orange/texture_06.png" id="2_ilf4m"]
 [ext_resource type="Texture2D" uid="uid://djg8y25y06h5n" path="res://assets/textures/grids/Green/texture_09.png" id="3_cl837"]
@@ -58,28 +59,6 @@
 [ext_resource type="PackedScene" uid="uid://bcesevur25aim" path="res://scenes/ui/ui.tscn" id="55_27y4k"]
 [ext_resource type="PackedScene" uid="uid://6h44oaibaea7" path="res://assets/models/Fantasy Low Poly Pack/wooden_pointer.fbx" id="55_cfpn0"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qnbnj"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_k2y6i"]
-sky_material = SubResource("ProceduralSkyMaterial_qnbnj")
-
-[sub_resource type="Environment" id="Environment_ttwxe"]
-background_mode = 2
-sky = SubResource("Sky_k2y6i")
-tonemap_mode = 2
-sdfgi_enabled = true
-sdfgi_use_occlusion = true
-sdfgi_bounce_feedback = 0.17
-sdfgi_cascades = 2
-sdfgi_min_cell_size = 0.1
-sdfgi_y_scale = 2
-glow_enabled = true
-fog_enabled = true
-fog_light_color = Color(0.698039, 0.72549, 0.772549, 1)
-fog_density = 0.002
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sbsoa"]
 albedo_texture = ExtResource("1_e70pu")
 uv1_triplanar = true
@@ -95,13 +74,22 @@ albedo_texture = ExtResource("4_yhq4d")
 
 [node name="world" type="Node3D"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+[node name="Sun DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 1.5768, 0)
+visible = false
 shadow_enabled = true
 directional_shadow_blend_splits = true
 
+[node name="Moon DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 1.5768, 0)
+light_energy = 0.255
+shadow_enabled = true
+shadow_transmittance_bias = 0.794
+shadow_blur = 2.085
+directional_shadow_blend_splits = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ttwxe")
+environment = ExtResource("1_8beje")
 
 [node name="map" type="Node3D" parent="."]
 
@@ -190,43 +178,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.127, -1.03747)
 [node name="Other" type="Node3D" parent="map"]
 
 [node name="house_01" parent="map/Other" instance=ExtResource("22_e5g8d")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.2467, 1.74276, 7.06693)
+transform = Transform3D(-0.7026, 0, -0.711585, 0, 1, 0, 0.711585, 0, -0.7026, 10.4752, 1.74276, 4.95046)
 
 [node name="house_02" parent="map/Other" instance=ExtResource("23_luwio")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2369, 4.76837e-07, -21.1892)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.34583, 4.76837e-07, -14.9778)
 
 [node name="house_03" parent="map/Other" instance=ExtResource("24_efl7f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1909, -4.76837e-07, -20.2558)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.95668, -2.38419e-06, -15.7576)
 
 [node name="Pine_Tree_01" parent="map/Other" instance=ExtResource("25_1ihj7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.4032, 0, 19.6674)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.47482, 9.53674e-07, 64.4845)
 
 [node name="Pine_Tree_02" parent="map/Other" instance=ExtResource("26_lhqrt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.3069, 0, 19.4932)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3996, 0, 52.3202)
 
 [node name="Pine_Tree_03" parent="map/Other" instance=ExtResource("27_3mu30")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.1152, -1.90735e-06, 15.9836)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.59237, -1.90735e-06, 47.7871)
 
 [node name="Pine_Tree_04" parent="map/Other" instance=ExtResource("28_kiiq5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0081, -1.90735e-06, 11.8983)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.34021, -9.53676e-07, 36.4731)
 
 [node name="Pine_Tree_05" parent="map/Other" instance=ExtResource("29_p2mum")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8503, -1.90735e-06, 10.7339)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.53333, -1.90735e-06, 40.8273)
 
 [node name="skull" parent="map/Other" instance=ExtResource("30_86l3w")]
 transform = Transform3D(0.784333, -0.340364, 0.518628, 0, 0.836037, 0.548673, -0.62034, -0.430342, 0.655731, -0.165824, 1.56802, -3.69979)
 
 [node name="straw_pile_01" parent="map/Other" instance=ExtResource("31_k7gc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.22795, 0, -18.1815)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.11902, 0, -11.9701)
 
 [node name="straw_pile_02" parent="map/Other" instance=ExtResource("32_a4676")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.20414, 0, -17.314)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.09521, 0, -11.1026)
 
 [node name="straw_pile_03" parent="map/Other" instance=ExtResource("33_ca5ke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.42978, 0, -2.55125)
 
 [node name="table_02" parent="map/Other" instance=ExtResource("34_2qpe1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.46707, -4.76837e-07, -15.7519)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.35814, -4.76837e-07, -9.54055)
 
 [node name="Terrain_03" parent="map/Other" instance=ExtResource("35_6w2c8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.34198, 0.00823557, -148.635)
@@ -262,43 +250,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.4454, 0.138248, 203.892)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.3093, 0.00288418, -283.163)
 
 [node name="Terrain_11" parent="map/Other" instance=ExtResource("43_nwcm4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.9984, 0.58183, -354.899)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.9984, -9.14561, -354.899)
 
 [node name="Tree_01" parent="map/Other" instance=ExtResource("44_xav8g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.8478, -1.90735e-06, -15.8744)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1927, -2.86102e-06, 7.80089)
 
 [node name="Tree_02" parent="map/Other" instance=ExtResource("45_yb2jh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5617, 0, -12.7739)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.29256, 0, 11.8859)
 
 [node name="Tree_03" parent="map/Other" instance=ExtResource("46_05eq1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.151, -9.53674e-07, -16.5795)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.40399, 2.86102e-06, 1.88027)
 
 [node name="Tree_04" parent="map/Other" instance=ExtResource("47_fi1ku")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4218, 0, 23.5915)
+transform = Transform3D(0.925124, 0, -0.379666, 0, 1, 0, 0.379666, 0, 0.925124, 15.5388, 9.53674e-07, -1.73401)
 
 [node name="Tree_05" parent="map/Other" instance=ExtResource("48_n1l2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1906, -9.53674e-07, -19.8409)
 
 [node name="Trunk_02" parent="map/Other" instance=ExtResource("49_s7bi2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.4786, -9.53674e-07, -4.13875)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9251, -9.53674e-07, -2.43665)
 
 [node name="Trunk_01" parent="map/Other" instance=ExtResource("50_0rfb8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2231, -2.86102e-06, -12.0698)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6696, -2.86102e-06, -10.3677)
 
 [node name="Trunk_03" parent="map/Other" instance=ExtResource("51_lv74q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.4473, 0, -7.86342)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8938, 0, -6.16132)
 
 [node name="wall" parent="map/Other" instance=ExtResource("52_m4a8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5654, -4.76837e-07, -22.5254)
 
 [node name="well" parent="map/Other" instance=ExtResource("53_uabkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8179, -4.76837e-07, -0.698794)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2644, -4.76837e-07, 1.00331)
 
 [node name="wheatfield" parent="map/Other" instance=ExtResource("54_3gl05")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2144, 0, 1.85144)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6609, 0, 3.55354)
 
 [node name="wooden_pointer" parent="map/Other" instance=ExtResource("55_cfpn0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2821, -4.76837e-07, 3.15536)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7286, -4.76837e-07, 4.85746)
 
 [node name="barrel_opened" parent="map/Other" instance=ExtResource("9_js84e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0139, 0, -0.608464)
