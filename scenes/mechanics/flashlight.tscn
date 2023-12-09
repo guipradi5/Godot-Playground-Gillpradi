@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwrgqr8ymv1wy"]
+
+[ext_resource type="Script" path="res://scripts/Flashlight.gd" id="1_kbumw"]
+
+[node name="Flashlight" type="Node3D"]
+script = ExtResource("1_kbumw")
+flashlightAction = "F"
+
+[node name="Light" type="SpotLight3D" parent="."]
+unique_name_in_owner = true
+visible = false
+light_energy = 1.5
+light_cull_mask = 4294967293
+spot_range = 39.9545
+spot_angle = 28.6111
