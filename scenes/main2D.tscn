@@ -477,5 +477,6 @@ shape = SubResource("RectangleShape2D_i8yoq")
 [connection signal="dialogueWindowOpened" from="UI" to="Player2D" method="lockCharacter"]
 [connection signal="changeScore" from="Sign" to="UI" method="_sumScore"]
 [connection signal="interacted" from="Sign/StaticBody2D/Interactable" to="Sign" method="_on_interactable_interacted"]
+[connection signal="dialogueEnded" from="PixelMeMother4" to="UI" method="hideTextWindow"]
 [connection signal="saySomething" from="PixelMeMother4" to="UI" method="_updateTextWindow"]
 [connection signal="interacted" from="PixelMeMother4/StaticBody2D/Interactable" to="PixelMeMother4" method="_sayDialogue"]

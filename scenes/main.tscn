@@ -1,7 +1,7 @@
-[gd_scene load_steps=63 format=3 uid="uid://t3fvk4qfxk63"]
+[gd_scene load_steps=64 format=3 uid="uid://t3fvk4qfxk63"]
 
+[ext_resource type="Environment" uid="uid://by4lpwxew3d6n" path="res://scenes/world environments/day.tres" id="1_acpgb"]
 [ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/textures/grids/Dark/texture_05.png" id="1_e70pu"]
-[ext_resource type="Environment" uid="uid://by4lpwxew3d6n" path="res://scenes/world environments/day.tres" id="1_opwqb"]
 [ext_resource type="Texture2D" uid="uid://6o3hwigx2swq" path="res://assets/textures/grids/Orange/texture_06.png" id="2_ilf4m"]
 [ext_resource type="Texture2D" uid="uid://djg8y25y06h5n" path="res://assets/textures/grids/Green/texture_09.png" id="3_cl837"]
 [ext_resource type="Texture2D" uid="uid://bm8djub5otix2" path="res://assets/textures/grids/Purple/texture_02.png" id="4_yhq4d"]
@@ -58,6 +58,7 @@
 [ext_resource type="PackedScene" uid="uid://bf472ceoqul4p" path="res://assets/models/Fantasy Low Poly Pack/wheatfield.fbx" id="54_3gl05"]
 [ext_resource type="PackedScene" uid="uid://bcesevur25aim" path="res://scenes/ui/ui.tscn" id="55_27y4k"]
 [ext_resource type="PackedScene" uid="uid://6h44oaibaea7" path="res://assets/models/Fantasy Low Poly Pack/wooden_pointer.fbx" id="55_cfpn0"]
+[ext_resource type="PackedScene" uid="uid://c7k47n3wd4qsc" path="res://assets/models/Fantasy Low Poly Pack/bed.fbx" id="59_ic7wl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sbsoa"]
 albedo_texture = ExtResource("1_e70pu")
@@ -89,7 +90,7 @@ shadow_blur = 2.085
 directional_shadow_blend_splits = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("1_opwqb")
+environment = ExtResource("1_acpgb")
 
 [node name="map" type="Node3D" parent="."]
 
@@ -332,6 +333,9 @@ sens_vertical = 0.25
 
 [node name="UI" parent="." instance=ExtResource("55_27y4k")]
 unique_name_in_owner = true
+
+[node name="bed" parent="." instance=ExtResource("59_ic7wl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02319, 0, 3.31594)
 
 [connection signal="dialogueEnded" from="map/grave" to="UI" method="hideTextWindow"]
 [connection signal="saySomething" from="map/grave" to="UI" method="_updateTextWindow"]

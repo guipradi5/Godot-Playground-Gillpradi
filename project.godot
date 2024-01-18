@@ -26,6 +26,10 @@ window/size/mode=3
 
 version_control/autoload_on_startup=true
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/anthonyec.camera_preview/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
